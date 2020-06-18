@@ -13,7 +13,7 @@ die('Connect Error ('. mysqli_connect_errno() .') '
 . mysqli_connect_error());
 }
 else{
-$sql = "DELETE FROM mydb WHERE username='yogamma'";
+$sql = "DELETE FROM mydb WHERE username='lakshmi'";
 if ($conn->query($sql)){
 echo "Record deleted sucessfully";
 }
