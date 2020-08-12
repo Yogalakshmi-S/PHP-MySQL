@@ -24,11 +24,19 @@ color: black;
 <th>Password</th>
 </tr>
 <?php
-$conn = mysqli_connect("localhost", "root", "", "sample");
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
+$username = filter_input(INPUT_POST, 'username');
+$password = filter_input(INPUT_POST, 'password');
+$host = "localhost";
+$dbusername = "root";
+$dbpassword = "";
+$dbname = "sample";
+// Create connection
+$conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
+if (mysqli_connect_error()){
+die('Connect Error ('. mysqli_connect_errno() .') '
+. mysqli_connect_error());
 }
+else{
 $sql = "SELECT * FROM mydb";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -38,10 +46,10 @@ echo "<tr><td>" . $row["username"] . "</td><td>"
 . $row["password"]. "</td></tr>";
 }
 echo "</table>";
-} else { echo "0 results"; }
+} else { echo "0 results"; }}
 $conn->close();
 ?>
-</table>
+</table>    
 </center>
 </body>
 </html>
